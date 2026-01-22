@@ -3,7 +3,7 @@ name: Deploy Portfolio to S3
 on:
   push:
     branches:
-      - master  # UPDATED: This must match your branch name exactly
+      - master
 
 jobs:
   deploy:
@@ -21,7 +21,8 @@ jobs:
 
       - name: Deploy static site to S3 bucket
         run: |
-          aws s3 sync . s3://$vcard-personal-portfolio  \
+          # FIX: I removed the '$' sign. It is now just the text name.
+          aws s3 sync . s3://vcard-personal-portfolio \
             --delete \
             --exclude ".git/*" \
             --exclude ".github/*" \
